@@ -6,54 +6,41 @@ using UnityEngine.XR.Interaction.Toolkit.Filtering;
 
 public class InteractableManager : MonoBehaviour
 {
-    public List<GameObject> interactableObjectsRed;
-    public List<GameObject> interactableObjectsGreen;
-    public List<GameObject> interactableObjectsBlue;
 
-    void UpdateInteractableObjects(Color currentColor)
-    {
-        if (currentColor == Color.red)
-        {
-            SetInteractableObjects(interactableObjectsRed);
-        }
-        else if (currentColor == Color.green)
-        {
-            SetInteractableObjects(interactableObjectsGreen);
-        }
-        else if (currentColor == Color.blue)
-        {
-            SetInteractableObjects(interactableObjectsBlue);
-        }
-        else
-        {
-            // Default behavior when no gem is held
-            SetInteractableObjects(null);
-        }
-    }
+    // public GameObject Reds;
+    // public GameObject Greens;
+    // public GameObject Blues;
 
-    void SetInteractableObjects(List<GameObject> objects)
-    {
-        // Disable interaction for all objects
-        foreach (var obj in interactableObjectsRed)
-        {
-            obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-        }
-        foreach (var obj in interactableObjectsGreen)
-        {
-            obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-        }
-        foreach (var obj in interactableObjectsBlue)
-        {
-            obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-        }
+    // public GameObject[] Red;
+    // public GameObject[] Green;
+    // public GameObject[] Blue;
 
-        // Enable interaction for objects corresponding to the held gem color
-        if (objects != null)
-        {
-            foreach (var obj in objects)
-            {
-                obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-            }
-        }
-    }
+    // void Start()
+    // {
+    //     Red = GameObject.FindGameObjectsWithTag("RED");
+    //     Green = GameObject.FindGameObjectsWithTag("GREEN");
+    //     Blue = GameObject.FindGameObjectsWithTag("BLUE");
+        
+    //     foreach (GameObject Reds in Red)
+    //     {
+    //         Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+    //     }
+    //     foreach (GameObject Greens in Green)
+    //     {
+    //         Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+    //     }
+    //     foreach (GameObject Blues in Blue)
+    //     {
+    //         Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+    //     } 
+    // }
+
+    // void Update()
+    // {
+        
+    // }
+    // void SetInteractableObjects(List<GameObject> objects)
+    // {
+    //     //obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+    // }
 }
