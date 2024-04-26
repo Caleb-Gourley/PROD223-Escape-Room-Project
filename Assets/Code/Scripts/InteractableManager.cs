@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Filtering;
@@ -7,40 +8,78 @@ using UnityEngine.XR.Interaction.Toolkit.Filtering;
 public class InteractableManager : MonoBehaviour
 {
 
-    // public GameObject Reds;
-    // public GameObject Greens;
-    // public GameObject Blues;
+    private VRHandController HandColor;
 
-    // public GameObject[] Red;
-    // public GameObject[] Green;
-    // public GameObject[] Blue;
+    public List<GameObject> interactableObjectsRed;
+    public List<GameObject> interactableObjectsGreen;
+    public List<GameObject> interactableObjectsBlue;
 
-    // void Start()
-    // {
-    //     Red = GameObject.FindGameObjectsWithTag("RED");
-    //     Green = GameObject.FindGameObjectsWithTag("GREEN");
-    //     Blue = GameObject.FindGameObjectsWithTag("BLUE");
-        
-    //     foreach (GameObject Reds in Red)
-    //     {
-    //         Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-    //     }
-    //     foreach (GameObject Greens in Green)
-    //     {
-    //         Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-    //     }
-    //     foreach (GameObject Blues in Blue)
-    //     {
-    //         Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-    //     } 
-    // }
+    void Start()
+    {   
+        HandColor = FindAnyObjectByType<VRHandController>();
 
-    // void Update()
-    // {
-        
-    // }
-    // void SetInteractableObjects(List<GameObject> objects)
-    // {
-    //     //obj.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-    // }
+        foreach (GameObject Red in interactableObjectsRed)
+        {
+            Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+        }
+        foreach (GameObject Green in interactableObjectsGreen)
+        {
+            Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+        }
+        foreach (GameObject Blue in interactableObjectsBlue)
+        {
+            Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+        } 
+    }
+
+    void Update()
+    {
+        if (HandColor.currentColor == Color.red)
+        {
+            foreach (GameObject Red in interactableObjectsRed)
+            {
+                Red.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+            }
+            foreach (GameObject Green in interactableObjectsGreen)
+            {
+                Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            }
+            foreach (GameObject Blue in interactableObjectsBlue)
+            {
+                Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            } 
+        }
+
+                if (HandColor.currentColor == Color.green)
+        {
+            foreach (GameObject Red in interactableObjectsRed)
+            {
+                Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            }
+            foreach (GameObject Green in interactableObjectsGreen)
+            {
+                Green.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+            }
+            foreach (GameObject Blue in interactableObjectsBlue)
+            {
+                Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            } 
+        }
+
+                if (HandColor.currentColor == Color.blue)
+        {
+            foreach (GameObject Red in interactableObjectsRed)
+            {
+                Red.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+            }
+            foreach (GameObject Green in interactableObjectsGreen)
+            {
+                Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            }
+            foreach (GameObject Blue in interactableObjectsBlue)
+            {
+                Blue.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+            } 
+        }
+    }
 }

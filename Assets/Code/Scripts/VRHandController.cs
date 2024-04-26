@@ -8,7 +8,7 @@ public class VRHandController : MonoBehaviour
     public Material defaultHandMaterial;
     public Renderer handRenderer;
 
-    private Color currentColor;
+    public Color currentColor;
 
     void Start()
     {
