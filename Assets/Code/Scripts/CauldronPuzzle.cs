@@ -30,6 +30,8 @@ public class CauldronPuzzle : MonoBehaviour
             // Move to the next object in the sequence
             currentIndex++;
 
+            droppedObject.GetComponent<MeshRenderer>().enabled = false;
+
             // Check if all objects have been added in the correct order
             if (currentIndex >= correctSequence.Length)
             {

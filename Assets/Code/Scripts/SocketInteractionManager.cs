@@ -16,6 +16,7 @@ public class SocketInteractionManager : MonoBehaviour
     public GameObject Puzzle_3_Trophy;
     public GameObject Key;
     public AudioSource Alert_Sound;
+    public AudioSource Key_Sound;
 
     void Start()
     {
@@ -23,46 +24,57 @@ public class SocketInteractionManager : MonoBehaviour
         Puzzle_2_Trophy.SetActive(false);
         Puzzle_3_Trophy.SetActive(false);
         Key.SetActive(false);
-        Alert_Sound.GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Puzzle_1_Count == 3)
+        if (Puzzle_1_Count >= 3)
         {
             Puzzle_1_Trophy.SetActive(true);
-            Alert_Sound.Play();
+            PlayAlertSoundEffect();
         }
 
-        if (Puzzle_2_Count == 2)
+        if (Puzzle_2_Count >= 2)
         {
             Puzzle_2_Trophy.SetActive(true);
-            Alert_Sound.Play();
+            PlayAlertSoundEffect();
         }
 
         if(IsPuzzle_3_Complete)
         {
             Puzzle_3_Trophy.SetActive(true);
-            Alert_Sound.Play();
+            PlayAlertSoundEffect();
         }
 
-        if(Trophy_Count == 3)
+        if(Trophy_Count >= 3)
         {
             Key.SetActive(true);
-            Alert_Sound.Play();
+            PlayAlertSoundEffect();
         }
 
         if(Key_Count)
         {
             // end screen
             Debug.Log("Win");
-            WaitForEndScreen();
+            PlayKeySoundEffect();
+            SceneManager.LoadScene("Game_Over");
+            // WaitForEndScreen();
         }
     }
 
-    public IEnumerator WaitForEndScreen()
+    // public IEnumerator WaitForEndScreen()
+    // {
+    //     yield return new WaitForSeconds(5);
+    //     SceneManager.LoadScene("Game_Over");
+    // }
+
+    public void PlayAlertSoundEffect()
     {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Game_Over");
+        Alert_Sound.Play();
+    }
+
+    public void PlayKeySoundEffect()
+    {
+        Key_Sound.Play();
     }
 }

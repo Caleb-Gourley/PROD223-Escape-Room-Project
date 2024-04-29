@@ -47,7 +47,7 @@ public class PuzzleSocketScript : MonoBehaviour
     public void ItemAdded_Key()
     {
         item = GetComponent<XRSocketInteractor>().GetOldestInteractableSelected();
-        SocketManager.GetComponent<SocketInteractionManager>().Key_Count = false;
+        SocketManager.GetComponent<SocketInteractionManager>().Key_Count = true;
     }
 
     public void ItemRemoved_Key()
