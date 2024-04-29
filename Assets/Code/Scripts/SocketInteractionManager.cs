@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SocketInteractionManager : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class SocketInteractionManager : MonoBehaviour
     public GameObject Puzzle_2_Trophy;
     public GameObject Puzzle_3_Trophy;
     public GameObject Key;
-    public InteractableManager Puzzle_2_List;
+    public AudioSource Alert_Sound;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class SocketInteractionManager : MonoBehaviour
         Puzzle_2_Trophy.SetActive(false);
         Puzzle_3_Trophy.SetActive(false);
         Key.SetActive(false);
+        Alert_Sound.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,29 +31,38 @@ public class SocketInteractionManager : MonoBehaviour
         if (Puzzle_1_Count == 3)
         {
             Puzzle_1_Trophy.SetActive(true);
+            Alert_Sound.Play();
         }
 
         if (Puzzle_2_Count == 2)
         {
             Puzzle_2_Trophy.SetActive(true);
-            Puzzle_2_List = GetComponent<InteractableManager>();
-            Puzzle_2_List.interactableObjectsRed.Clear();
+            Alert_Sound.Play();
         }
 
         if(IsPuzzle_3_Complete)
         {
             Puzzle_3_Trophy.SetActive(true);
+            Alert_Sound.Play();
         }
 
         if(Trophy_Count == 3)
         {
             Key.SetActive(true);
+            Alert_Sound.Play();
         }
 
         if(Key_Count)
         {
             // end screen
             Debug.Log("Win");
+            WaitForEndScreen();
         }
+    }
+
+    public IEnumerator WaitForEndScreen()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Game_Over");
     }
 }

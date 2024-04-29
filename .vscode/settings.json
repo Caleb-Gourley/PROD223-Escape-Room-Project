@@ -51,6 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "PROD223-Assignment-2-cgo80.sln",
+    "dotnet.defaultSolution": "PROD223-Escape-Room-cgo80.sln",
     "dotnet.preferCSharpExtension": true
 }

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Filtering;
 
 public class InteractableManager : MonoBehaviour
 {
@@ -13,6 +11,8 @@ public class InteractableManager : MonoBehaviour
     public List<GameObject> interactableObjectsRed;
     public List<GameObject> interactableObjectsGreen;
     public List<GameObject> interactableObjectsBlue;
+
+    public SocketInteractionManager Red_Counter;
 
     void Start()
     {   
@@ -50,12 +50,16 @@ public class InteractableManager : MonoBehaviour
             } 
         }
 
-                if (HandColor.currentColor == Color.green)
+        if (HandColor.currentColor == Color.green)
         {
-            foreach (GameObject Red in interactableObjectsRed)
+            if (Red_Counter.Puzzle_2_Count != 2)
             {
-                Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+                foreach (GameObject Red in interactableObjectsRed)
+                {
+                    Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+                }
             }
+
             foreach (GameObject Green in interactableObjectsGreen)
             {
                 Green.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
@@ -66,12 +70,16 @@ public class InteractableManager : MonoBehaviour
             } 
         }
 
-                if (HandColor.currentColor == Color.blue)
+        if (HandColor.currentColor == Color.blue)
         {
-            foreach (GameObject Red in interactableObjectsRed)
+            if (Red_Counter.Puzzle_2_Count != 2)
             {
-                Red.gameObject.GetComponent<XRGrabInteractable>().enabled = true;
+                foreach (GameObject Red in interactableObjectsRed)
+                {
+                    Red.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+                }
             }
+
             foreach (GameObject Green in interactableObjectsGreen)
             {
                 Green.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
