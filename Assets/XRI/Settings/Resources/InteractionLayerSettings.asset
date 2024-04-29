@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LayerNames:
   - Default
-  - Axe_Shield
+  - Axe
   - Candles
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Shield
+  - Key
+  - Trophy_01
+  - Trophy_02
+  - Trophy_03
   - 
   - 
   - 

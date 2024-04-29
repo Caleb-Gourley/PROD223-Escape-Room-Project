@@ -4,10 +4,11 @@ using System.Collections.Generic;
 public class CauldronPuzzle : MonoBehaviour
 {
     public GameObject[] correctSequence; // Array to store the correct sequence of game objects
-    // public GameObject key; // Key to spawn when puzzle is solved
+    public GameObject Cauldron;
 
     private int currentIndex = 0; // Index to track the current game object in the sequence
     private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>(); // Dictionary to store original positions
+    public GameObject SocketManager;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class CauldronPuzzle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("GameObject: " + other.gameObject.name + "correctSequence: " + correctSequence[currentIndex]);
         GameObject droppedObject = other.gameObject;
 
         // Check if the dropped object is the correct one in the sequence
@@ -31,8 +33,8 @@ public class CauldronPuzzle : MonoBehaviour
             // Check if all objects have been added in the correct order
             if (currentIndex >= correctSequence.Length)
             {
-                // Puzzle solved, spawn the key
-                // SpawnKey();
+                Cauldron.GetComponent<BoxCollider>().enabled = false;
+                SocketManager.GetComponent<SocketInteractionManager>().IsPuzzle_3_Complete = true;
             }
         }
         else
@@ -50,10 +52,4 @@ public class CauldronPuzzle : MonoBehaviour
             obj.transform.position = originalPositions[obj];
         }
     }
-
-    // private void SpawnKey()
-    // {
-    //     // Spawn the key game object
-    //     Instantiate(key, transform.position, Quaternion.identity);
-    // }
 }
